@@ -24,6 +24,31 @@
 /** @type {Transaction[]} In-memory array — single source of truth */
 let transactions = [];
 
+function saveTransactions() {
+  try {
+    localStorage.setItem('expense-transactions-v1', JSON.stringify(transactions));
+  } catch (err) {
+    console.error('Failed to save transactions to localStorage', err);
+  }
+}
+
+function loadTransactions() {
+  try {
+    const raw = localStorage.getItem('expense-transactions-v1');
+    if (!raw) return;
+    const parsed = JSON.parse(raw);
+    if (Array.isArray(parsed)) {
+      transactions = parsed.map(tx => ({
+        ...tx,
+        amount: Number(tx.amount),
+        timestamp: Number(tx.timestamp) || Date.now(),
+      }));
+    }
+  } catch (err) {
+    console.error('Failed to load transactions from localStorage', err);
+  }
+}
+
 /** @type {import('chart.js').Chart|null} Chart.js instance */
 let chart = null;
 
