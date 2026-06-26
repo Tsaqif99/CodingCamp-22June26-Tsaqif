@@ -1,0 +1,344 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-bg: #f5f7fa;
+  --color-surface: #ffffff;
+  --color-primary: #4f46e5;
+  --color-primary-hover: #4338ca;
+  --color-danger: #dc2626;
+  --color-income: #16a34a;
+  --color-expense: #dc2626;
+  --color-text: #1e293b;
+  --color-text-muted: #64748b;
+  --color-border: #e2e8f0;
+  --radius: 8px;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode {
+  --color-bg: #0f172a;
+  --color-surface: #111827;
+  --color-primary: #818cf8;
+  --color-primary-hover: #6366f1;
+  --color-danger: #f87171;
+  --color-income: #4ade80;
+  --color-expense: #f87171;
+  --color-text: #f8fafc;
+  --color-text-muted: #cbd5e1;
+  --color-border: #334155;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 14px; /* minimum 14px as required */
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  min-height: 100vh;
+}
+
+header {
+  background-color: var(--color-primary);
+  color: #fff;
+  padding: 1rem 1.5rem;
+}
+
+.header-row {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+header h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.theme-toggle {
+  border: none;
+  border-radius: 999px;
+  padding: 0.5rem 0.85rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+  background-color: rgba(255, 255, 255, 0.3);
+  outline: none;
+}
+
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+section {
+  background-color: var(--color-surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.25rem;
+}
+
+section h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.625rem 0.75rem;
+  font-size: 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  transition: border-color 0.15s ease;
+  min-height: 44px;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+.form-errors {
+  font-size: 0.875rem;
+  color: var(--color-danger);
+  margin-bottom: 0.75rem;
+  min-height: 0;
+}
+
+.form-errors:not(:empty) {
+  padding: 0.625rem 0.75rem;
+  background-color: #fef2f2;
+  border: 1px solid #fca5a5;
+  border-radius: var(--radius);
+}
+
+.form-errors p {
+  margin: 0.125rem 0;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: var(--color-primary);
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  min-height: 44px; 
+}
+
+.btn-submit:hover,
+.btn-submit:focus-visible {
+  background-color: var(--color-primary-hover);
+  outline: none;
+}
+
+.balance-amount {
+  font-size: 2rem; 
+  font-weight: 700;
+  color: var(--color-primary);
+  text-align: center;
+  padding: 0.5rem 0;
+}
+
+.balance-amount.positive {
+  color: var(--color-income);
+}
+
+.balance-amount.negative {
+  color: var(--color-expense);
+}
+
+#transaction-list {
+  list-style: none;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.transaction-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.transaction-controls .form-group.compact {
+  flex: 1;
+  min-width: 140px;
+  margin-bottom: 0;
+}
+
+.transaction-controls select {
+  min-height: 44px;
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--color-text-muted);
+  font-style: italic;
+  padding: 1rem 0;
+}
+
+.transaction-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--color-border);
+  gap: 0.75rem;
+}
+
+.transaction-item:last-child {
+  border-bottom: none;
+}
+
+.transaction-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.transaction-name {
+  font-weight: 500;
+  font-size: 0.9375rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+.transaction-meta {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  margin-top: 0.125rem;
+}
+
+.transaction-amount {
+  font-weight: 700;
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+.transaction-amount.income {
+  color: var(--color-income);
+}
+
+.transaction-amount.expense {
+  color: var(--color-expense);
+}
+
+.btn-delete {
+  padding: 0.375rem 0.625rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-danger);
+  background-color: #fef2f2;
+  border: 1px solid #fca5a5;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-delete:hover,
+.btn-delete:focus-visible {
+  background-color: #fee2e2;
+  outline: none;
+}
+
+#chart-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+#chart-section h2 {
+  width: 100%;
+}
+
+#expense-chart {
+  max-width: 300px;
+  max-height: 300px;
+}
+
+@media (min-width: 768px) {
+  main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "form  balance"
+      "form  chart"
+      "list  list";
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  #form-section    { grid-area: form; }
+  #balance-section { grid-area: balance; }
+  #chart-section   { grid-area: chart; }
+  #list-section    { grid-area: list; }
+
+  header h1 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  main {
+    padding: 2rem;
+  }
+}
